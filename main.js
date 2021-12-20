@@ -1,79 +1,65 @@
 "use strict";
 exports.__esModule = true;
-exports.ArrayComponent = void 0;
-var ArrayComponent = /** @class */ (function () {
-    function ArrayComponent() {
+exports.noComponent = exports.wdComponent = void 0;
+var wdComponent = /** @class */ (function () {
+    function wdComponent() {
     }
-    ArrayComponent.prototype.arrayMultiply = function (myArray) {
-        var array1 = [];
-        var j = 0;
-        for (var i = 0; i < myArray.length; i++) {
-            if (myArray[i] % 5 == 0) {
-                array1[j] = myArray[i];
-                j++;
+    wdComponent.prototype.print = function (word) {
+        var pos = 2;
+        var word1 = "world";
+        console.log(word.toUpperCase());
+        console.log(word.toLowerCase());
+        console.log(word.charAt(pos));
+        console.log(word + word1);
+        console.log(word.slice(0, 5));
+        return word.length;
+    };
+    wdComponent.prototype.printWithSpace = function (sentence) {
+        var between = '';
+        var ans = sentence.split('').join(between);
+        return ans;
+    };
+    wdComponent.prototype.findVowel = function (vowel) {
+        var count = 0;
+        for (var i = 0; i < vowel.length; i++) {
+            if (vowel[i] == 'a' || vowel[i] == 'e' || vowel[i] == 'i' || vowel[i] == 'o' || vowel[i] == 'u') {
+                count++;
             }
         }
-        return array1;
+        return count;
     };
-    ArrayComponent.prototype.arraySeparate = function (myArray) {
-        var array1 = [];
-        var j = 0;
-        for (var i = 0; i < myArray.length; i++) {
-            if (typeof myArray[i] == "string") {
-                array1[j] = myArray[i];
-                j++;
-            }
-        }
-        return array1;
-    };
-    ArrayComponent.prototype.arraySplit = function (myArray) {
-        var array1 = [];
-        var j = 0;
-        var x = 0;
-        for (var i = 0; i < myArray.length; i++) {
-            x = 0;
-            for (var k = 2; k < myArray[i]; k++) {
-                if (myArray[i] % k == 0) {
-                    x = 1;
-                }
-            }
-            if (x != 1 && typeof myArray[i] == "number") {
-                array1[j] = myArray[i];
-                j++;
-            }
-        }
-        return array1;
-    };
-    ArrayComponent.prototype.arraySort = function (myArray) {
-        for (var i = 0; i < myArray.length - 1; i++) {
-            for (var k = i; k < myArray.length; k++) {
-                if (myArray[i] > myArray[k]) {
-                    var temp = myArray[i];
-                    myArray[i] = myArray[k];
-                    myArray[k] = temp;
-                }
-            }
-        }
-        return myArray;
-    };
-    ArrayComponent.prototype.arrayReplace = function (myArray) {
-        var array1 = [];
-        var j = 0;
-        for (var i = 0; i < myArray.length; i++) {
-            if (myArray[i] % 3 == 0) {
-                myArray[i] = 5;
-            }
-        }
-        return myArray;
-    };
-    return ArrayComponent;
+    return wdComponent;
 }());
-exports.ArrayComponent = ArrayComponent;
-var myArray = [34, 45, 60, 23, 13, 25, 70];
-var a1 = [2, 3, 17, 13, 'hello', 4];
-var array = new ArrayComponent();
-console.log(array.arrayMultiply(myArray));
-console.log(array.arraySeparate(myArray));
-console.log(array.arraySplit(a1));
-console.log(array.arraySort(myArray));
-console.log(array.arrayReplace(myArray));
+exports.wdComponent = wdComponent;
+var noComponent = /** @class */ (function () {
+    function noComponent() {
+    }
+    noComponent.prototype.findPrime = function (num) {
+        for (var i = 2; i < num; i++) {
+            if (num % i == 0) {
+                return "not a prime";
+            }
+        }
+        return "prime number";
+    };
+    noComponent.prototype.findMagic = function (num) {
+        var result = num.toString().split('').map(Number).reduce(function (a, b) { return a + b; }, 0);
+        while (result > 10) {
+            result = result.toString().split('').map(Number).reduce(function (a, b) { return a + b; }, 0);
+        }
+        return result;
+    };
+    return noComponent;
+}());
+exports.noComponent = noComponent;
+var word = "Hello";
+var sentence = "Nice to meet you";
+var vowel = "aeiousthjfkoiea";
+var wd = new wdComponent();
+console.log(wd.print(word));
+console.log(wd.printWithSpace(sentence));
+console.log(wd.findVowel(vowel));
+var no = new noComponent();
+var num = 13;
+console.log(no.findPrime(num));
+console.log(no.findMagic(num));

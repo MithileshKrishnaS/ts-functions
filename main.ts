@@ -1,104 +1,85 @@
-import { ArrayService } from "./app-service";
+import { StringManipulationService  } from "./app-service";
+import { NumberManipulationService  } from "./app-service";
 
-export class ArrayComponent implements ArrayService {
+export class wdComponent implements StringManipulationService {
 
     constructor() {}
 
-    public arrayMultiply(myArray: number[]) : Array<Number> {
-        var array1=[];
-        var j=0;
-        for(let i=0;i<myArray.length;i++)
-        {
-            if(myArray[i]%5==0)
-            {
-                array1[j]=myArray[i];
-                j++;
-            }
-            
-        }
-        return array1;
+    public print(word: string ) {
+        var pos=2;
+        var word1="world";
+        console.log(word.toUpperCase());
+        console.log(word.toLowerCase());
+        console.log(word.charAt(pos));
+        console.log(word+word1);
+        console.log(word.slice(0, 5));
+        return word.length;
     }
 
-    public arraySeparate(myArray: any) : Array<string>{
-        var array1=[];
-        var j=0;
-        for(let i=0;i<myArray.length;i++)
-        {
-            if(typeof myArray[i]=="string")
-            {
-                array1[j]=myArray[i];
-                j++;
-            }
-        }
-        return array1;
+    public printWithSpace(sentence: any){
+        var between='';
+        var ans=sentence.split('').join(between);
+        return ans;
     }
 
-    public arraySplit(myArray: any) : Array<any>{
-        var array1=[];
-        var j=0;
-        var x=0;
-        for(let i=0;i<myArray.length;i++)
+    public findVowel(vowel:string){
+        var count=0;
+        for(let i=0;i<vowel.length;i++)
         {
-            x=0;
-            for(let k=2;k<myArray[i];k++)
+            if(vowel[i]=='a'||vowel[i]=='e'||vowel[i]=='i'||vowel[i]=='o'||vowel[i]=='u')
             {
-                
-                if(myArray[i]%k==0)
-                {
-                    x=1;
-                }
-                
-            }
-            if(x!=1 && typeof myArray[i]=="number")
-            {
-                array1[j]=myArray[i];
-                j++;
-            }
-               
-        }
-        return array1;
-    }
-
-    public arraySort(myArray:any):Array<string>{
-        for(let i=0;i<myArray.length-1;i++)
-        {
-            for(let k=i;k<myArray.length;k++)
-            {
-                if(myArray[i]>myArray[k])
-                {
-                    let temp = myArray[i];
-                    myArray[i] = myArray[k];
-                    myArray[k] = temp;
-                }
+                count++;
             }
         }
-        return myArray;
-    }
+        return count;
 
-    public arrayReplace(myArray:any):Array<number>{
-       var array1=[];
-        var j=0;
-        for(let i=0;i<myArray.length;i++)
-        {
-            if(myArray[i]%3==0)
-            {
-                myArray[i]=5;
-            }
-        }
-        return myArray;
     }
-
+ 
 }
 
-let myArray: number[] = [34, 45, 60, 23, 13, 25, 70];
-let a1=[2,3,17,13,'hello',4]
-let array = new ArrayComponent();
+export class noComponent implements NumberManipulationService  {
 
-console.log(array.arrayMultiply(myArray));
-console.log(array.arraySeparate(myArray));
-console.log(array.arraySplit(a1));
-console.log(array.arraySort(myArray));
-console.log(array.arrayReplace(myArray));
+    constructor() {}
+
+    public findPrime(num: number) {
+       for(let i=2;i<num;i++)
+       {
+           if(num%i==0)
+           {
+               return "not a prime";
+           }
+       }
+       return "prime number"
+    }
+
+    public findMagic(num: number){
+        var result=num.toString().split('').map(Number).reduce(function (a, b) {return a + b;}, 0);
+        while(result>10)
+        {
+            result=result.toString().split('').map(Number).reduce(function (a, b) {return a + b;}, 0);
+        }
+        return result;
+    }
+
+ 
+}
+
+let word: string = "Hello";
+let sentence="Nice to meet you";
+let vowel="aeiousthjfkoiea"
+let wd = new wdComponent();
+
+console.log(wd.print(word));
+console.log(wd.printWithSpace(sentence));
+console.log(wd.findVowel(vowel));
+
+let no = new noComponent();
+let num=13;
+console.log(no.findPrime(num));
+console.log(no.findMagic(num));
+
+
+
 
 
 

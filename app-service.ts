@@ -1,8 +1,10 @@
+export interface StringManipulationService  {
+    print(word:string);
+    printWithSpace(sentence:string) ;
+    findVowel(str: string) ;
+}
 
-export interface ArrayService {
-    arrayMultiply(myArray : any) ;
-    arraySeparate(myArray : any) ;
-    arraySplit(myString : any) ;
-    arraySort(myArray : any) ;
-    arrayReplace(myArray : any) ;
+export interface NumberManipulationService {
+    findPrime(num: number);
+    findMagic(num: number);
 }
